@@ -45,13 +45,13 @@ def get_client_id(client_id:int):
   print(data_client_id_df)
   proba = model.predict_proba(data_client_id_df)
   
-  #return dict(
-  #client_id = client_id, # Rappel de la valeur d'entrée
-  #reject_proba = proba,
-     #features = X_client, # option
-  #)
+  return dict(
+   # FastAPI convertit les dict en json automatiquement
+   client_id=client_id,
+   proba = proba.tolist(),
+)
   
-  return(json.dumps(proba.tolist()))
+  #return(json.dumps(proba.tolist()))
   
     
 
