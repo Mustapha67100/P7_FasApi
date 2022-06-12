@@ -1,16 +1,12 @@
 # 1. Library imports
-import matplotlib.pyplot as plt
 import pandas as pd
-import numpy as np
 import uvicorn
-from fastapi import FastAPI, Request
+from fastapi import FastAPI
 import joblib
 import json
 import os
 #import requests
 from pathlib import Path
-from lime.lime_tabular import LimeTabularExplainer
-from sklearn.neighbors import NearestNeighbors
 
 # 2. Create the app object
 app = FastAPI()
@@ -19,9 +15,10 @@ app = FastAPI()
 
 #CURRENT_FOLDER = Path.cwd()
 CURRENT_FOLDER= os.getcwd()
-PROJECT_FOLDER = Path(CURRENT_FOLDER).parent.parent
-DATA_FOLDER = PROJECT_FOLDER/'P7'
-model=joblib.load(DATA_FOLDER/'model_xg_30000.joblib')
+PROJECT_FOLDER = Path(CURRENT_FOLDER)
+DATA_FOLDER = PROJECT_FOLDER
+model=joblib.load(DATA_FOLDER/'model.joblib')
+#model=joblib.load(DATA_FOLDER/'model_xg_30000.joblib')
 #model=joblib.load(DATA_FOLDER/'model_log_100000.joblib')
 data_test=joblib.load(DATA_FOLDER/'data_test_sub_cutoff.joblib')
 
@@ -34,6 +31,7 @@ def index():
 # 4. Route with a client_id, returns the parameter within a message
 #    Located at: http://127.0.0.1:8000/AnyNameHere
   
+# Requête permettant de récupérer les informations d’un client sélectionné à travers son identifiant ID
     
 @app.get('/predict/{client_id}')
 def get_client_id(client_id:int):
