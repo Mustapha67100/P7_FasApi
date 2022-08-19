@@ -17,8 +17,8 @@ app = FastAPI()
 CURRENT_FOLDER= os.getcwd()
 PROJECT_FOLDER = Path(CURRENT_FOLDER)
 DATA_FOLDER = PROJECT_FOLDER
-#model=joblib.load(DATA_FOLDER/'model.joblib')
-model=joblib.load(DATA_FOLDER/'model_log.joblib')
+model=joblib.load(DATA_FOLDER/'model.joblib')
+#model=joblib.load(DATA_FOLDER/'model_log.joblib')
 
 #model=joblib.load(DATA_FOLDER/'model_log_100000.joblib')
 data_test=joblib.load(DATA_FOLDER/'data_test_sub_cutoff.joblib')
