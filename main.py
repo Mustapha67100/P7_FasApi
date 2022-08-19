@@ -5,7 +5,7 @@ from fastapi import FastAPI
 import joblib
 import json
 import os
-#import requests
+import shap
 from pathlib import Path
 
 # 2. Create the app object
@@ -17,11 +17,12 @@ app = FastAPI()
 CURRENT_FOLDER= os.getcwd()
 PROJECT_FOLDER = Path(CURRENT_FOLDER)
 DATA_FOLDER = PROJECT_FOLDER
-model=joblib.load(DATA_FOLDER/'model.joblib')
-#model=joblib.load(DATA_FOLDER/'model_xg_30000.joblib')
+#model=joblib.load(DATA_FOLDER/'model.joblib')
+model=joblib.load(DATA_FOLDER/'model_log.joblib')
+
 #model=joblib.load(DATA_FOLDER/'model_log_100000.joblib')
 data_test=joblib.load(DATA_FOLDER/'data_test_sub_cutoff.joblib')
-
+shap_values=joblib.load(DATA_FOLDER/'shap_values.joblib')
 
 # 3. Index route, opens automatically on http://127.0.0.1:8000
 @app.get('/')
@@ -48,8 +49,9 @@ def get_client_id(client_id:int):
   return dict(
    # FastAPI convertit les dict en json automatiquement
    client_id=client_id,
-   proba = proba.tolist(),
+   proba = proba.tolist(),   
 )
+
   
   #return(json.dumps(proba.tolist()))
   
