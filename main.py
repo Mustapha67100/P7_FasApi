@@ -5,7 +5,7 @@ from fastapi import FastAPI
 import joblib
 import json
 import os
-import shap
+
 from pathlib import Path
 
 # 2. Create the app object
