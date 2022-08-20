@@ -22,7 +22,7 @@ model=joblib.load(DATA_FOLDER/'model.joblib')
 
 #model=joblib.load(DATA_FOLDER/'model_log_100000.joblib')
 data_test=joblib.load(DATA_FOLDER/'data_test_sub_cutoff.joblib')
-shap_values=joblib.load(DATA_FOLDER/'shap_values.joblib')
+#shap_values=joblib.load(DATA_FOLDER/'shap_values.joblib')
 
 # 3. Index route, opens automatically on http://127.0.0.1:8000
 @app.get('/')
